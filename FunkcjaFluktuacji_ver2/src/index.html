@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tomasz Kwiecień - zadania z RPS</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <style>
+            table.math_table { text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
+        </style>
+
+        <title>jm</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <SCRIPT LANGUAGE="JavaScript">
+            <!--
+
+            border_debug=0;
+
+            function frac(BEF,MUL,DIV,AFT){
+                return '\n'+
+                    '<table border="'+border_debug+'" class="math_table" align="left" cellpadding="0" cellspacing="0" >\n'+
+                    '    <tbody>\n'+
+                    '        <tr>\n'+
+                    '            <td rowspan="2" nowrap="nowrap">\n'+
+                    '                '+BEF+'&nbsp;\n'+
+                    '            </td>\n'+
+                    '            <td nowrap="nowrap" align="center">\n'+
+                    '                '+MUL+'\n'+
+                    '            </td>\n'+
+                    '            <td rowspan="2" nowrap="nowrap">\n'+
+                    '                &nbsp;'+AFT+'\n'+
+                    '            </td>\n'+
+                    '        </tr>\n'+
+                    '        <tr>\n'+
+                    '            <td style="border-top:solid 1px black;" align="center">\n'+
+                    '                '+DIV+'\n'+
+                    '            </td>\n'+
+                    '        </tr>\n'+
+                    '    </tbody>\n'+
+                    '</table>\n';
+            }
+
+            function sqrt(BEF, WHAT, AFT) {
+                return '\n'+
+                    '<table border="'+border_debug+'" class="math_table" align="left" cellpadding="0" cellspacing="0" >\n'+
+                    '    <tbody>\n'+
+                    '        <tr>\n'+
+                    '            <td nowrap="nowrap" align="right" >\n'+
+                    '                '+BEF+'&nbsp;<span style="font-size: 150%;">&radic;</span>\n'+
+                    '            </td>\n'+
+                    '            <td style="border-top:solid 1px black;" nowrap="nowrap">\n'+
+                    '                &nbsp;'+WHAT+'\n'+
+                    '            </td>\n'+
+                    '            <td nowrap="nowrap" align="right" >\n'+
+                    '                &nbsp;'+AFT+'\n'+
+                    '            </td>\n'+
+                    '        </tr>\n'+
+                    '    </tbody>\n'+
+                    '</table>\n';
+            }
+
+            function iter(SYMBOL, FROM, TO, WHAT) {
+                return '\n'+
+                    '<table border="'+border_debug+'" class="math_table" align="left" cellpadding="0" cellspacing="0" >\n'+
+                    '    <tbody>\n'+
+                    '        <tr>\n'+
+                    '            <td align="center">\n'+
+                    '                <small>&nbsp;'+TO+'&nbsp;</small><br>\n'+
+                    '                <big><big><big>'+SYMBOL+'</big></big></big><br>\n'+
+                    '                <small>'+FROM+'</small>\n'+
+                    '            </td>\n'+
+                    '            <td>\n'+
+                    '                &nbsp;'+WHAT+'<big>&nbsp;</big>\n'+
+                    '            </td>\n'+
+                    '        </tr>\n'+
+                    '    </tbody>\n'+
+                    '</table>\n';
+            }
+
+            function lim(BEF, IND, TO, WHAT, AFT) {
+                return '\n'+
+                    '<table border="'+border_debug+'" class="math_table" align="left" cellpadding="0" cellspacing="0" >\n'+
+                    '    <tbody>\n'+
+                    '        <tr valign="baseline">\n'+
+                    '            <td align="center">\n'+
+                    '                '+BEF+'\n'+
+                    '            </td>\n'+
+                    '            <td align="center">lim<br>\n'+
+                    '                <small>'+IND+' &rarr; '+TO+'</small>\n'+
+                    '            </td>\n'+
+                    '            <td>\n'+
+                    '                '+WHAT+'\n'+
+                    '            </td>\n'+
+                    '            <td nowrap="nowrap" align="right" >\n'+
+                    '                '+AFT+'\n'+
+                    '            </td>\n'+
+                    '        </tr>\n'+
+                    '    </tbody>\n'+
+                    '</table>\n';
+            }
+
+            function insert_tag(s,m,tag) {
+                var str='';
+                i=0;
+                while (i<s.length)
+                {
+                    c=s.charAt(i);
+                    i++;
+                    if (c==m){
+                        str+='<'+tag+'>';
+                        if (i==s.length)
+                            break;
+                        str+=s.charAt(i);
+                        str+='</'+tag+'>';
+                        i++;
+                    } else {
+                        str+=c;
+                    }
+                }
+                return str;
+            }
+
+            function math(s) {
+                s=insert_tag(s,'_','sub');
+                s=insert_tag(s,'^','sup');
+                document.write(s+'<br>\n');
+            }
+
+            //-->
+        </SCRIPT>
+
+    </head>
+    <body>
+        <script type="text/javascript" language="JavaScript">
+            math(
+            '<h3>Parametry funkcji B</h3>'+
+                't - długość odcinka<br>'+
+                'n - log<sub><sub>2</sub></sub> z ilości pododcinków<br>'+
+                '&sigma; - współczynnik wyznaczania wariancji<br><br>'+
+                '<h3>Punkty podziału odcinka [0,t] na 2<sup>n</sup> równych części</h3>'+
+                frac('t_1 = t_0 +','1','2^n',' t')+'<br><br><br>'+
+                frac('t_2 = t_0 +','1','2^n',' t')+
+                frac('&nbsp;+','1','2^n',' t')+'<br><br><br>'+
+                '...<br><br>\n'+
+                't<sub>2<sup>n</sup></sub> = t<br><br><br>'+
+                '<h3>Definicja funkcji losowej B</h3>'+
+                '1) B(t_0) = 0<br>'+
+                '2) Jeżeli obliczono B(t_0), B(t_1), ... , B(t_k_-_1)<br>'+
+                sqrt('&nbsp;&nbsp;&nbsp;wtedy B(t_k) = B(t_k_-_1) + U, gdzie U &isin; N ( 0,&sigma;','t_k - t_k_-_1',' )')+'<br><br><br>'+
+                '<h3>Sposób obliczania U</h3>'+
+                sqrt('biorę &xi; &isin; N(0,1) , U = &sigma;', 't_k - t_k_-_1', ' &xi; ')+
+                sqrt('&nbsp;, wtedy U &nbsp;&isin; N ( 0,&sigma;','t_k - t_k_-_1',' )' )+'<br><br>'+
+                '<a href="rozklad.html">Generowanie rozkładu normalnego</a><br><br>'+
+                sqrt('dla zadanego n , ','t_k - t_k_-_1','',0)+
+                sqrt('=','1 / 2^n','  jest stałą',1)+'<br><br><br>'+
+                '<h3>Całki do zbadania</h3>'+
+                iter('&int;','0','t','B^2(u)du &nbsp;=')+
+                iter('&Sigma;','k=1','2^n^-^1','')+
+                iter('&int','t_k_-_1','t_k','B^2(u)du &nbsp;&asymp;')+
+                iter('&Sigma','k=1','2^n^-^1','')+'<br>'+
+                frac('','t','2^n','')+
+                frac('B(','t_k_-_1 - t_k','2',') &nbsp;&nbsp;<a href="calka1.html">Całka 1</a>')+
+                '<br><br><br><br>'+
+                iter('&Sigma;','0 &le; t_j &le; t<sub>2<sup>n</sup></sub>','','t_j B(t_j) [ B(t_j_+_1)-B(t_j) ] &nbsp;=',0)+
+                iter('&Sigma;','j = 1','2^n','t_j_-_1 B_j(t_j_-_1) [ B(t_j)-B(t_j_-_1) ] &nbsp;&nbsp;<a href="calka2.html">Całka 2</a>')
+
+        );
+        </script>
+        <br><br><br><br><br><br><br><br><br><br>
+    </body>
+</html>
+
+

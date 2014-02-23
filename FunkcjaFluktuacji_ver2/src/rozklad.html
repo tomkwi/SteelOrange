@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Generowanie rozkładu normalnego</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <APPLET code="UserJApplet.class" WIDTH="1000" HEIGHT="640">
+            <param NAME="Model" VALUE="ModelRozkladNormalny">
+        </APPLET><br><br>
+Opis parametrów:<br>
+* generator : 1 - próba generowania metodą odwórconej dystrybuanty<br>
+* generator : 2 - metoda Boza Mullera używana w standardzie Javy<br>
+* przedział - zakres odpowiadający jednemu słupkowi histogramu<br>
+* zakres - ograniczenie co do wartości bezwględnej wyników ujętych w histogramie, wypisywany jest procent wyników obciętych<br>
+* losowania - ilość wylosowań zmiennej<br>
+<br>
+Histogram przedstawia zliczenie wyników w poszczególnych przedziałach,<br>
+dodatkowo przeskalowane tak, aby pole pod wykresem było równe 1.<br>
+<br>
+Obserwacje:<br>
+Generator 1 losuje funkcją SecureRandom.nextDouble liczbę<br>
+z przedziału (0,1) według rozkładu jednostajnego.<br>
+Potem wyszukuje w tablicy dystrybuanty wartość<br>
+najbliższą do wylosowanej liczby<br>
+i argument dla tej wartosci zwraca jako wynik.<br>
+W niektóre przedziały wpada więcej wartości niż należy.<br>
+Przypuszczam, że albo generator SecureRandom nie jest całkiem jednostajny,<br>
+albo 9 cyfr to za mała dokładność tablicy dla tej metody.<br>
+<br>
+Gnerator 2 realizuje metodę Boxa i Mullera<br>
+używaną w funkcji Random.nextGaussian.<br>
+Daje prawidłowe wyniki.<br>
+<br><br><br><br><br>
+</body>
+</html>

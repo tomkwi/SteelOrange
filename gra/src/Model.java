@@ -1,8 +1,4 @@
 
-//tutaj mają być obliczenia
-
-//ciekawe czy jest możliwe wziąć potem tą klasę javy
-//i zamontować w .net jako fragment aplikacji xna
 
 import java.awt.image.BufferedImage;
 
@@ -35,9 +31,6 @@ public class Model implements ModelInterface {
         this.fileName=fileName;
     }
     
-    //mówiłaś, że masz pomysł na uproszczoną wersję modelu
-    //dobrze, więc na razie skup się na tym
-    //a ja będę robić Usera a potem swoją wersję modelu
     @Override
     public void nextFrame() {
         if (plansza==null)

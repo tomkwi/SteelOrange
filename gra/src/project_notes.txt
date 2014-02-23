@@ -1,0 +1,88 @@
+
+2014-02-23, Tomasz Kwiecień
+
+-- project_notes.txt
+
+Plik na chrologiczny zapis uwag,
+które nie należą do dokumentacji kodu,
+a które się nasuwają w trakcie jego pisania.
+
+Umieszczony w katalogu SteelOrange/gra/src 
+bo tylko tak można go edytować z poziomu NetBeans.
+
+-- GitHub
+
+Założyłem na github konto tomkwi i w nim repozytorium SteelOrange
+Ściągnąłem i zainstalowałem klienta GitHub pod Windows, ale mi się nie logował.
+
+W tutorialu:
+http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1
+Pisze, że git to system użyty do tworzenia linuxa i składowa linuxa
+a github to portal oparty o git, który nie odbiera praw autorskich,
+jest popularny i można na nim trzymać nie tylko programy.
+Ściągnąłem i zainstalowałem git z:
+http://git-scm.com/download/win
+Uruchomiłem MenuStart/Git/GitBash i wpisałem
+$ git config --global user.name "tomkwi"
+$ git config --global user.email "tomkwi@gmail.com"
+$ mkdir ~/SteelOrange
+powstał katalog C:\Documents and Settings\<NazwaProfiluWindowsXP>\SteelOrange
+skrótowo będę to zapisywał ~\SteelOrange
+następne polecenia wg tutoriala:
+$ chdir ~/SteelOrange
+$ git init
+po tym powstał ukryty katalog ~\SteelOrange\.git
+z jakąś tam zawartością około 15kb
+
+Dalej według tutoriala:
+http://readwrite.com/2013/10/02/github-for-beginners-part-2
+wpisałem polecenia:
+$ touch Readme.txt
+powstał pusty plik ~\SteelOrange\Readme.txt
+$ git status
+$ git add Readme.txt
+$ git commit -m "Add Readme.txt"
+$ git remote add origin https://github.com/tomkwi/SteelOrange.git
+$ git remote -v
+
+Dalej się nie łączyło.
+Zmieniłem hasło do GitHub, doinstalowałem dotnet 4 i klient github zadział.
+Robiłem próby dla zapoznania się, kilka razy kasowałem repozytorium.
+Zrezygnowałem z pisania notatek projektowych w README GitHuba.
+
+Commitowałem dwie wersje, tą z maila i drugą z dzisiaj, 
+z komentarzami przeniesionymi do tego pliku i z załączonymi screenshotami.
+Nie piszę polskich liter w nazwach plików w repozytorium, bo mi je GitHub przekłamuje.
+
+-- ModelInterface.java
+
+keys = new boolean[8]; //stan qwerasdf
+ballPosition = new double[2+1];  //współrzędne x,y,a a-kąt
+
+-- Model.java
+
+Ciekawe czy jest możliwe wziąć klasę javy 'Model'
+i zamontować w .net jako fragment aplikacji xna.
+
+Rozważaliśmy pięć wersji modelu:
+używający XNA
+używający składowych Polycode
+używający specyficznej biblioteki symulcyjnej
+elementarany jako rozwiązanie zadania z fizyki
+uproszczony opierający się chyba na stałych przyrostach
+
+-- User.java
+
+User.actionPerformed
+ma być do czytania klawiszy
+i ma uaktualniać tablice stanu klawiszy
+User ma zmierzyć czas tworzenia ramki (modelu i swój)
+i według timera wywoływać model i odrysowywać ramkę.
+
+-- gra.htm
+
+parametry mają być wygenerowane przez jsp
+zwłaszcza width i height mają być z jednego źródła.
+Dobrze że plik htm jest aktualizowany z src do build/classes
+Przeglądarkę trzeba wywoływać z build/classes.
+Wciąż jeszcze działa mi tylko IE

@@ -10,6 +10,9 @@ a które się nasuwają w trakcie jego pisania.
 Umieszczony w katalogu SteelOrange/gra/src 
 bo tylko tak można go edytować z poziomu NetBeans.
 
+polskie znaki do wklejania
+  ĄĆĘŁŃÓŚŻŹąćęłńóśżź
+
 -- GitHub
 
 Założyłem na github konto tomkwi i w nim repozytorium SteelOrange
@@ -52,12 +55,19 @@ Zrezygnowałem z pisania notatek projektowych w README GitHuba.
 
 Commitowałem dwie wersje, tą z maila i drugą z dzisiaj, 
 z komentarzami przeniesionymi do tego pliku i z załączonymi screenshotami.
-Nie piszę polskich liter w nazwach plików w repozytorium, bo mi je GitHub przekłamuje.
+Nie piszę polskich liter w nazwach plików w repozytorium, bo mi je GitHub zmienia.
 
 -- ModelInterface.java
 
 keys = new boolean[8]; //stan qwerasdf
 ballPosition = new double[2+1];  //współrzędne x,y,a a-kąt
+
+To można uprościć do: 
+double[] nextFrame(booolean[]);  //bierze stan klawiszy, zwraca nowe współrzędne
+
+Model musi pamiętać położenie, prędkość liniową i obrotową.
+Chyba trzeba przekształcić moment sił względem punktu styku ze ścianą
+na momend sił względem środka kuli.
 
 -- Model.java
 
@@ -65,11 +75,18 @@ Ciekawe czy jest możliwe wziąć klasę javy 'Model'
 i zamontować w .net jako fragment aplikacji xna.
 
 Rozważaliśmy pięć wersji modelu:
-używający XNA
-używający składowych Polycode
-używający specyficznej biblioteki symulcyjnej
-elementarany jako rozwiązanie zadania z fizyki
-uproszczony opierający się chyba na stałych przyrostach
+.używający XNA
+.używający składowych Polycode
+.używający specyficznej biblioteki symulcyjnej
+.elementarany jako rozwiązanie zadania z fizyki
+.uproszczony opierający się chyba na stałych przyrostach
+
+Czy można User użyć tak jak jest w aplikacji do telefonu ?
+Jak w telefonie zrobić 8 klawiszy, na ekranie smartfona, użyć fizycznych ?
+Czy da się odczytać w telefonie jednoczesne naciśnięcia klawiszy ?
+Smartfony są raczej na androidzie.
+Czy można Model i User użyć tak jak są w androidzie ?
+Ile by potrzeba zmian ?
 
 -- User.java
 
@@ -79,10 +96,23 @@ i ma uaktualniać tablice stanu klawiszy
 User ma zmierzyć czas tworzenia ramki (modelu i swój)
 i według timera wywoływać model i odrysowywać ramkę.
 
+Timer systemowy pojmuję na podobieństwo 
+przerwania zegarowego w mikrokontrolerze.
+Wzorowanie kodu na poprzednim projekcie:
+niech na razie User wypisze swoje parametry.
+
 -- gra.htm
 
-parametry mają być wygenerowane przez jsp
-zwłaszcza width i height mają być z jednego źródła.
+Parametry mają być wygenerowane przez jsp,
+width i height mają być z jednego źródła.
 Dobrze że plik htm jest aktualizowany z src do build/classes
 Przeglądarkę trzeba wywoływać z build/classes.
 Wciąż jeszcze działa mi tylko IE
+
+-- mapa_1.gif
+
+Średnia rodzielczość monitorów to 70-100 ppi.
+Mam ekran o rozdzielczości około 87 ppi.
+Do projektowania plansz używam pliku:
+"kartka z zeszytu A5 na ekran 87 dpi.gif" 
+Ma on rozmiar 681x443 pikseli, który przyjmuję dla swoich plansz.

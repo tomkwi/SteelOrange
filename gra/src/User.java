@@ -6,18 +6,18 @@ import java.awt.event.*;
 public class User extends JPanel implements ActionListener {
 
     Panel flow;
-    ModelInterface modelInterface;
+    Model model;
 
-    public User(ModelInterface model, String fileName,String width, String heightModel) {
+    public User(Model model) {
         try {
-            
-            modelInterface=model;
+
+            this.model = model;
 
             flow = new Panel(new FlowLayout(FlowLayout.LEFT, 2, 2));
             flow.add(new JLabel("test"));
             setBackground(Color.green);
-            
-            repaint();    
+
+            repaint();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -30,5 +30,4 @@ public class User extends JPanel implements ActionListener {
             System.out.println(e);
         }
     }
-
 }

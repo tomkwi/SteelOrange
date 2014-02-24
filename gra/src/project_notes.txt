@@ -1,86 +1,92 @@
 
-2014-02-23, Tomasz Kwiecień
-
 -- project_notes.txt
 
-Plik na chrologiczny zapis uwag,
-które nie należą do dokumentacji kodu,
-a które się nasuwają w trakcie jego pisania.
+Plik na uwagi, które nie należą do dokumentacji.
+Jest w katalogu SteelOrange/gra/src żeby go edytować w NetBeans.
 
-Umieszczony w katalogu SteelOrange/gra/src 
-bo tylko tak można go edytować z poziomu NetBeans.
+Głównie to jest plan pracy, którego nie chcę rozrzucać po kodzie.
+Ale mogą się pojawić różne refleksje ogólne.
+Pomaga skupić myśli, treść jest szlifowana tak jak kod, 
+więc nie da się traktować tego jak bloga.
 
-polskie znaki do wklejania
-  ĄĆĘŁŃÓŚŻŹąćęłńóśżź
+Project Notes to nazwa okienka z IDE Borland C pod DOSem.
+Ono wyznacza filozofię tego pliku.
+Dodatkowe okienko w IDE, gdzie się notuje.
 
--- GitHub
-
-Założyłem na github konto tomkwi i w nim repozytorium SteelOrange
-Ściągnąłem i zainstalowałem klienta GitHub pod Windows, ale mi się nie logował.
-
-W tutorialu:
-http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1
-Pisze, że git to system użyty do tworzenia linuxa i składowa linuxa
-a github to portal oparty o git, który nie odbiera praw autorskich,
-jest popularny i można na nim trzymać nie tylko programy.
-Ściągnąłem i zainstalowałem git z:
-http://git-scm.com/download/win
-Uruchomiłem MenuStart/Git/GitBash i wpisałem
-$ git config --global user.name "tomkwi"
-$ git config --global user.email "tomkwi@gmail.com"
-$ mkdir ~/SteelOrange
-powstał katalog C:\Documents and Settings\<NazwaProfiluWindowsXP>\SteelOrange
-skrótowo będę to zapisywał ~\SteelOrange
-następne polecenia wg tutoriala:
-$ chdir ~/SteelOrange
-$ git init
-po tym powstał ukryty katalog ~\SteelOrange\.git
-z jakąś tam zawartością około 15kb
-
-Dalej według tutoriala:
-http://readwrite.com/2013/10/02/github-for-beginners-part-2
-wpisałem polecenia:
-$ touch Readme.txt
-powstał pusty plik ~\SteelOrange\Readme.txt
-$ git status
-$ git add Readme.txt
-$ git commit -m "Add Readme.txt"
-$ git remote add origin https://github.com/tomkwi/SteelOrange.git
-$ git remote -v
-
-Dalej się nie łączyło.
-Zmieniłem hasło do GitHub, doinstalowałem dotnet 4 i klient github zadział.
-Robiłem próby dla zapoznania się, kilka razy kasowałem repozytorium.
-Zrezygnowałem z pisania notatek projektowych w README GitHuba.
-
-Commitowałem dwie wersje, tą z maila i drugą z dzisiaj, 
-z komentarzami przeniesionymi do tego pliku i z załączonymi screenshotami.
-Nie piszę polskich liter w nazwach plików w repozytorium, bo mi je GitHub zmienia.
-
--- ModelInterface.java
-
-keys = new boolean[8]; //stan qwerasdf
-ballPosition = new double[2+1];  //współrzędne x,y,a a-kąt
-
-To można uprościć do: 
-double[] nextFrame(booolean[]);  //bierze stan klawiszy, zwraca nowe współrzędne
-
-Model musi pamiętać położenie, prędkość liniową i obrotową.
-Chyba trzeba przekształcić moment sił względem punktu styku ze ścianą
-na momend sił względem środka kuli.
+ĄĆĘŁŃÓŚŻŹąćęłńóśżź
 
 -- Model.java
-
-Ciekawe czy jest możliwe wziąć klasę javy 'Model'
-i zamontować w .net jako fragment aplikacji xna.
 
 Rozważaliśmy pięć wersji modelu:
 .używający XNA
 .używający składowych Polycode
 .używający specyficznej biblioteki symulcyjnej
-.elementarany jako rozwiązanie zadania z fizyki
+.elementarany jako rozwiązanie zadania z fizyki (ten realizuję)
 .uproszczony opierający się chyba na stałych przyrostach
 
+Musi pamiętać położenie, prędkość liniową i obrotową.
+Chyba trzeba przekształcić moment sił względem punktu styku ze ścianą
+na momend sił względem środka kuli.
+
+Żeby dostać współrzędne w pikselach bitmapy
+trzeba od wysokości rysunku czyli 2,6 odjąć współrzędne w metrach
+a wynik pomnożyć przez 0,17.
+
+Symulacja na doublach, przycinanie int do pikseli.
+
+Nie wiem jak obliczyć siłę przyciągania magnesu do żelaza.
+http://pl.wikipedia.org/wiki/Magnes  =>  F =~ Q1*Q2 / (12,5 * r * r)
+Prowizorycznie podaję siłę przyciągania 200 niutonów w odelgłości 0, 
+skoro magnes ma unieść kilogramową kulkę.
+Przypuszczam, że w prawie Coulomba 
+metal ma być reprezentowany jako ładunek 1,
+a magnes jako jakiś ładunek większy, ze znakiem.
+Tak to będę obliczał dla plansz z magnesami w tle.
+To może być fizycznie błędne, ale chyba wystarczy na potrzeby gry.
+
+-- User.java
+
+User.actionPerformed ma być do czytania klawiszy
+i ma uaktualniać tablice stanu klawiszy
+
+User ma zmierzyć  najpierw czas tworzenia ramki (modelu i swój)
+i według timera wywoływać model i odrysowywać ramkę.
+
+plan: niech na razie User wypisze swoje parametry.
+
+-- gra.htm
+
+Przeglądarkę trzeba wywoływać z build/classes.
+
+Aplet ma na razie rozmiar na sztywno,
+zakładam że to będzie 800x600,
+Można to zmieniać przez jsp, 
+które czytałoby rozmiar mapy z pliku ssv.
+
+-- mapa_1.bmp
+
+Kolory 255,255,255 i 192,192,192 to powietrze
+Kolor 0,0,0 to podłoże, niemagnetyczne
+Kolor 128,0,0 to metal przyciągający oba bieguny 
+Kolor 0,255,0 to obszar końcowy
+
+-- mapa_1.ssv
+
+ssv = space separated values, komentarze od #
+UkladOdniesienia SI - metr, sekunda, kilogram - jednostka pochodna niuton
+UkladWsporzednych kartezjanski - 0,0 w lewym dolnym rogu
+
+-- ciekawostki
+
+Na razie zapisuję mapy jako bmp, bo format gif zmienia kolory.
+
+Średnia rodzielczość monitorów to 70-100 ppi.
+Mam ekran o rozdzielczości około 87 ppi.
+Do projektowania plansz używam pliku:
+"kartka z zeszytu A5 na ekran 87 dpi.gif" 
+
+Ciekawe czy jest możliwe wziąć klasę javy 'Model'
+i zamontować w .net jako fragment aplikacji xna.
 Czy można User użyć tak jak jest w aplikacji do telefonu ?
 Jak w telefonie zrobić 8 klawiszy, na ekranie smartfona, użyć fizycznych ?
 Czy da się odczytać w telefonie jednoczesne naciśnięcia klawiszy ?
@@ -88,31 +94,5 @@ Smartfony są raczej na androidzie.
 Czy można Model i User użyć tak jak są w androidzie ?
 Ile by potrzeba zmian ?
 
--- User.java
-
-User.actionPerformed
-ma być do czytania klawiszy
-i ma uaktualniać tablice stanu klawiszy
-User ma zmierzyć czas tworzenia ramki (modelu i swój)
-i według timera wywoływać model i odrysowywać ramkę.
-
-Timer systemowy pojmuję na podobieństwo 
-przerwania zegarowego w mikrokontrolerze.
-Wzorowanie kodu na poprzednim projekcie:
-niech na razie User wypisze swoje parametry.
-
--- gra.htm
-
-Parametry mają być wygenerowane przez jsp,
-width i height mają być z jednego źródła.
-Dobrze że plik htm jest aktualizowany z src do build/classes
-Przeglądarkę trzeba wywoływać z build/classes.
-Wciąż jeszcze działa mi tylko IE
-
--- mapa_1.gif
-
-Średnia rodzielczość monitorów to 70-100 ppi.
-Mam ekran o rozdzielczości około 87 ppi.
-Do projektowania plansz używam pliku:
-"kartka z zeszytu A5 na ekran 87 dpi.gif" 
-Ma on rozmiar 681x443 pikseli, który przyjmuję dla swoich plansz.
+http://www.gry.jeja.pl/2569,magnesy.html
+http://swobodna.energia.salon24.pl/464475,magnetyczne-oszustwo,2

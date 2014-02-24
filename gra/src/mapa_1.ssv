@@ -1,0 +1,26 @@
+
+# 17 pikseli na mapie odpowiada 10 centymetrom symulacji
+PikseliNaMetr 17 0,1
+
+# plansza ma 4 x 2,6 metra
+RozmiarMapy 4 2,6
+PunktStartowy 1 0,4
+
+# kulka ma 40 cm
+SrednicaKulki 0,4
+IloscMagnesow 4
+
+# waży 1 kg
+MasaKulki 1
+
+# grawitacja to 9,81 niutonów na ciało 1 kg
+Grawitacja 9,81
+
+# w odległości 0 magnes przyciąga metal z siłą 200 niutonów 
+SilaMagnesu 200
+
+
+
+
+
+

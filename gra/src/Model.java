@@ -1,40 +1,26 @@
 
-
 import java.awt.image.BufferedImage;
 
-public class Model implements ModelInterface {
+public class Model {
 
-    boolean[] keys;
-    double[] ballPosition;
-    String fileName;
+    boolean[] keys;  //qwerasdf
+    double[] ballPosition; //x,y,alfa [metry,radiany]
     BufferedImage plansza;
+    double frameDuration;  //długość kroku czasowego symulacji [sekundy]
 
-    public Model() {
-        keys = new boolean[8]; //stan qwerasdf
-        ballPosition = new double[2+1];  //współrzędne x,y,a a-kąt
-        fileName = "";
-        plansza = null;
+    public Model(String map) {
+        keys = new boolean[8]; 
+        ballPosition = new double[2 + 1];  
+        // wczytanie mapy 
     }
     
-    @Override
-    public void writeKeys(boolean[] keys) {
-        this.keys=keys;
+    public void setFrameDuration(double frameDuration) {
+        this.frameDuration = frameDuration;
     }
 
-    @Override
-    public double[] readBallPosition() {
+    public double[] nextFrame(boolean[] keys) {
+        this.keys = keys;
+        // wyznaczenie nowego położenia
         return ballPosition;
     }
-
-    @Override
-    public void setBoardFile(String fileName) {
-        this.fileName=fileName;
-    }
-    
-    @Override
-    public void nextFrame() {
-        if (plansza==null)
-            return;
-    }    
-    
 }

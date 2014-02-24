@@ -5,16 +5,10 @@ public class UserJFrame extends JFrame {
 
     public static void main(String args[]) {
         try {
-
-            //parametry apletu
-            Integer width=640;
-            Integer height=480;
-            String fileName="mapa_1.gif";
-
-            Model model=new Model();
-            User user = new User(model,fileName,width.toString(),height.toString());
+            Model model=new Model("mapa_1");
+            User user = new User(model);
             UserJFrame okno = new UserJFrame();
-            okno.setSize(width+8, height+64);  //8x64 - non client area
+            okno.setSize(800+8, 640+64);  //8x64 - non client area
             okno.add(user);
             okno.setDefaultCloseOperation(EXIT_ON_CLOSE);
             okno.setVisible(true);
